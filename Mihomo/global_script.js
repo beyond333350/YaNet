@@ -17,11 +17,11 @@ const enable = true
  * false = 禁用
  */
 const ruleOptions = {
-  apple: false, // 苹果服务
+  openai: true, // 国外AI和GPT
   microsoft: true, // 微软服务
+  apple: false, // 苹果服务
   github: false, // Github服务
   google: false, // Google服务
-  openai: true, // 国外AI和GPT
   spotify: false, // Spotify
   youtube: false, // YouTube
   bahamut: false, // 巴哈姆特/动画疯
@@ -39,7 +39,7 @@ const ruleOptions = {
   whatsapp: false, // Whatsapp
   games: false, // 游戏策略组
   japan: false, // 日本网站策略组
-  // tracker: true, // 网络分析和跟踪服务
+  // tracker: false, // 网络分析和跟踪服务
   ads: false, // 常见的网络广告
 }
 
@@ -48,24 +48,11 @@ const ruleOptions = {
  * 如果有需要前置的自定义规则，可以自行修改
  */
 const rules = [
-  'RULE-SET,applications,下载软件',
-  'PROCESS-NAME,SunloginClient,DIRECT',
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
   'PROCESS-NAME,AnyDesk,DIRECT',
   'PROCESS-NAME,AnyDesk.exe,DIRECT',
   'PROCESS-NAME,节点小宝,DIRECT',
-  'PROCESS-NAME,nblink.exe,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkBackup,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkClient,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkRfile,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkBackup.exe,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkClient.exe,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkDevice.exe,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkOwjdxb.exe,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkRfile.exe,DIRECT',
-  'PROCESS-NAME,NodeBabyLinkService.exe,DIRECT',
   'DOMAIN-SUFFIX,iepose.com,DIRECT',
-  'DOMAIN-SUFFIX,ionewu.com,DIRECT',
 ]
 
 /**
@@ -82,43 +69,43 @@ const regionOptions = {
       regex: /港|🇭🇰|hk|hongkong|hong kong/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png',
-    },
+    }，
     {
       name: 'US美国',
       regex: /(?!.*aus)(?=.*(美|🇺🇸|us(?!t)|usa|american|united states)).*/i,
-      ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png',
+      ratioLimit: 2，
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'，
     },
     {
       name: 'JP日本',
       regex: /日本|🇯🇵|jp|japan/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png',
-    },
+    }，
     {
       name: 'KR韩国',
       regex: /韩|🇰🇷|kr|korea/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png',
-    },
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png'，
+    }，
     {
       name: 'SG新加坡',
       regex: /新加坡|🇸🇬|sg|singapore/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png',
-    },
+    }，
     {
       name: 'CN中国大陆',
       regex: /中国|🇨🇳|cn|china/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png',
-    },
+    }，
     {
       name: 'TW台湾省',
-      regex: /台湾|🇹🇼|tw|taiwan|tai wan/i,
+      regex: /台湾|🇹🇼|tw|taiwan|tai wan/i，
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png',
-    },
+    }，
     {
       name: 'GB英国',
       regex: /英|🇬🇧|uk|united kingdom|great britain/i,
@@ -126,17 +113,17 @@ const regionOptions = {
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png',
     },
     {
-      name: 'DE德国',
-      regex: /德国|🇩🇪|de|germany/i,
-      ratioLimit: 2,
+      name: 'DE德国'，
+      regex: /德国|🇩🇪|de|germany/i，
+      ratioLimit: 2，
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png',
     },
     {
-      name: 'MY马来西亚',
+      name: 'MY马来西亚'，
       regex: /马来|🇲🇾|my|malaysia/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png',
-    },
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png'，
+    }，
     {
       name: 'TK土耳其',
       regex: /土耳其|🇹🇷|tk|turkey/i,
@@ -283,7 +270,7 @@ function main(config) {
     enable: true,
     'force-dns-mapping': true,
     'parse-pure-ip': false,
-    'override-destination': true,
+    'override-destination': false,
     sniff: {
       TLS: {
         ports: [443, 8443],
@@ -296,20 +283,20 @@ function main(config) {
       },
     },
     'skip-src-address': [
-      '127.0.0.0/8',
-      '192.168.0.0/16',
-      '10.0.0.0/8',
+      '127.0.0.0/8'，
+      '192.168.0.0/16'，
+      '10.0.0.0/8'，
       '172.16.0.0/12',
-    ],
+    ]，
     'force-domain': [
-      '+.google.com',
-      '+.googleapis.com',
-      '+.googleusercontent.com',
+      '+.google.com'，
+      '+.googleapis.com'，
+      '+.googleusercontent.com'，
       '+.youtube.com',
-      '+.facebook.com',
-      '+.messenger.com',
-      '+.fbcdn.net',
-      'fbcdn-a.akamaihd.net',
+      '+.facebook.com'，
+      '+.messenger.com'，
+      '+.fbcdn.net'，
+      'fbcdn-a.akamaihd.net'，
     ],
     'skip-domain': ['Mijia Cloud', '+.oray.com'],
   }
@@ -325,22 +312,22 @@ function main(config) {
 
   config['tun'] = {
     'exclude-interface': [
-      'NodeBabyLink',
-    ],
+      'NodeBabyLink'，
+    ]，
     'route-exclude-address': [
-      '10.0.0.0/8',
+      '10.0.0.0/8'，
       '127.0.0.0/8',
-      '172.16.0.0/12',
-      '192.168.0.0/16',
-      '198.18.0.0/15',
-    ],
+      '172.16.0.0/12'，
+      '192.168.0.0/16'，
+      '198.18.0.0/15'，
+    ]，
   }
 
   config['geox-url'] = {
     geoip:
-      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat',
+      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat'，
     geosite:
-      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat',
+      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat'，
     mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb',
     asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb',
   }
