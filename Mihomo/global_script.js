@@ -69,43 +69,43 @@ const regionOptions = {
       regex: /港|🇭🇰|hk|hongkong|hong kong/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png',
-    }，
+    },
     {
       name: 'US美国',
       regex: /(?!.*aus)(?=.*(美|🇺🇸|us(?!t)|usa|american|united states)).*/i,
-      ratioLimit: 2，
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'，
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png',
     },
     {
       name: 'JP日本',
       regex: /日本|🇯🇵|jp|japan/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png',
-    }，
+    },
     {
       name: 'KR韩国',
       regex: /韩|🇰🇷|kr|korea/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png'，
-    }，
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png',
+    },
     {
       name: 'SG新加坡',
       regex: /新加坡|🇸🇬|sg|singapore/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png',
-    }，
+    },
     {
       name: 'CN中国大陆',
       regex: /中国|🇨🇳|cn|china/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png',
-    }，
+    },
     {
       name: 'TW台湾省',
-      regex: /台湾|🇹🇼|tw|taiwan|tai wan/i，
+      regex: /台湾|🇹🇼|tw|taiwan|tai wan/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png',
-    }，
+    },
     {
       name: 'GB英国',
       regex: /英|🇬🇧|uk|united kingdom|great britain/i,
@@ -113,17 +113,17 @@ const regionOptions = {
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png',
     },
     {
-      name: 'DE德国'，
-      regex: /德国|🇩🇪|de|germany/i，
-      ratioLimit: 2，
+      name: 'DE德国',
+      regex: /德国|🇩🇪|de|germany/i,
+      ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png',
     },
     {
-      name: 'MY马来西亚'，
+      name: 'MY马来西亚',
       regex: /马来|🇲🇾|my|malaysia/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png'，
-    }，
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png',
+    },
     {
       name: 'TK土耳其',
       regex: /土耳其|🇹🇷|tk|turkey/i,
@@ -146,9 +146,9 @@ const regionOptions = {
 }
 
 /**
- * 其实两组DNS就够了，一组国内，一组国外
- * defaultDNS是用来解析DNS的，必须为IP
- * DNS最好不要超过两个，从业界某知名APP的文档里学的
+ * 其实两组DNS就够了,一组国内,一组国外
+ * defaultDNS是用来解析DNS的,必须为IP
+ * DNS最好不要超过两个,从业界某知名APP的文档里学的
  */
 const defaultDNS = ['tls://223.5.5.5']
 
@@ -175,7 +175,7 @@ const dnsConfig = {
   'proxy-server-nameserver': [...foreignDNS],
   /**
    * 这里对域名解析进行分流
-   * 由于默认dns是国外的了，只需要把国内ip和域名分流到国内dns
+   * 由于默认dns是国外的了,只需要把国内ip和域名分流到国内dns
    */
   'nameserver-policy': {
     'geosite:private': 'system',
@@ -244,7 +244,7 @@ function main(config) {
   config['tcp-concurrent'] = true
 
   /**
-   * 这个值设置大点能省电，笔记本和手机需要关注一下
+   * 这个值设置大点能省电,笔记本和手机需要关注一下
    */
   config['keep-alive-interval'] = 1800
 
@@ -253,7 +253,7 @@ function main(config) {
   config['geodata-mode'] = true
 
   /**
-   * 适合小内存环境，如果在旁路由里运行可以改成standard
+   * 适合小内存环境,如果在旁路由里运行可以改成standard
    */
   config['geodata-loader'] = 'memconservative'
 
@@ -262,8 +262,8 @@ function main(config) {
   config['geo-update-interval'] = 24
 
   /**
-   * 不开域名嗅探的话，日志里只会记录请求的ip，对查找问题不方便
-   * override-destination默认值是true，但是个人建议全局设为false，否则某些应用会出现莫名其妙的问题
+   * 不开域名嗅探的话,日志里只会记录请求的ip,对查找问题不方便
+   * override-destination默认值是true,但是个人建议全局设为false,否则某些应用会出现莫名其妙的问题
    * Mijia Cloud跳过是网上抄的
    */
   config['sniffer'] = {
@@ -283,26 +283,26 @@ function main(config) {
       },
     },
     'skip-src-address': [
-      '127.0.0.0/8'，
-      '192.168.0.0/16'，
-      '10.0.0.0/8'，
+      '127.0.0.0/8',
+      '192.168.0.0/16',
+      '10.0.0.0/8',
       '172.16.0.0/12',
-    ]，
+    ],
     'force-domain': [
-      '+.google.com'，
-      '+.googleapis.com'，
-      '+.googleusercontent.com'，
+      '+.google.com',
+      '+.googleapis.com',
+      '+.googleusercontent.com',
       '+.youtube.com',
-      '+.facebook.com'，
-      '+.messenger.com'，
-      '+.fbcdn.net'，
-      'fbcdn-a.akamaihd.net'，
+      '+.facebook.com',
+      '+.messenger.com',
+      '+.fbcdn.net',
+      'fbcdn-a.akamaihd.net',
     ],
     'skip-domain': ['Mijia Cloud', '+.oray.com'],
   }
 
   /**
-   * write-to-system如果设为true的话，有可能出现电脑时间不对的问题
+   * write-to-system如果设为true的话,有可能出现电脑时间不对的问题
    */
   config['ntp'] = {
     enable: true,
@@ -312,22 +312,22 @@ function main(config) {
 
   config['tun'] = {
     'exclude-interface': [
-      'NodeBabyLink'，
-    ]，
+      'NodeBabyLink',
+    ],
     'route-exclude-address': [
-      '10.0.0.0/8'，
+      '10.0.0.0/8',
       '127.0.0.0/8',
-      '172.16.0.0/12'，
-      '192.168.0.0/16'，
-      '198.18.0.0/15'，
-    ]，
+      '172.16.0.0/12',
+      '192.168.0.0/16',
+      '198.18.0.0/15',
+    ],
   }
 
   config['geox-url'] = {
     geoip:
-      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat'，
+      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat',
     geosite:
-      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat'，
+      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat',
     mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb',
     asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb',
   }
@@ -342,7 +342,7 @@ function main(config) {
   regionOptions.regions.forEach((region) => {
     /**
      * 提取倍率符合要求的代理节点
-     * 判断倍率有问题的话，大概率是这个正则的问题，可以自行修改
+     * 判断倍率有问题的话,大概率是这个正则的问题,可以自行修改
      * 自己改正则的话记得必须把倍率的number值提取出来
      */
     let proxies = config.proxies
@@ -362,8 +362,8 @@ function main(config) {
 
     /**
      * 必须再判断一下有没有符合要求的代理节点
-     * 没有的话，这个策略组就不应该存在
-     * 我喜欢自动选择延迟最低的节点，喜欢轮询的可以自己修改
+     * 没有的话,这个策略组就不应该存在
+     * 我喜欢自动选择延迟最低的节点,喜欢轮询的可以自己修改
      */
     if (proxies.length > 0) {
       regionProxyGroups.push({
